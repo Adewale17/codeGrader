@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Code Assessment System</title>
+        {{-- @vite(entrypoints: ['resources/css/app.css', 'resources/js/app.js']) --}}
+
     <link rel="stylesheet" href ="{{ asset('assets/css/styles.css') }}">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -13,7 +16,7 @@
 <body class="d-flex flex-column min-vh-100">
 
     <!-- Navigation Bar -->
-   <nav class="nav-header navbar navbar-expand-lg navbar-dark bg-primary">
+   <nav class="nav-header navbar navbar-expand-lg navbar-dark bg-info">
     <div class="container">
         <a class="navbar-brand" href="#">CodeEvaluator</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -24,7 +27,7 @@
             <ul class="navbar-nav ms-auto align-items-center">
                 <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="/submit-code">Submit Code</a></li>
-                <li class="nav-item"><a class="nav-link" href="/submit-code">History</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('code.history') }}">History</a></li>
                 <li class="nav-item"><a class="nav-link" href="/howitworks">How It Works</a></li>
 
                 @guest
@@ -55,10 +58,11 @@
     @yield('content')
 
     <!-- Footer -->
-    <footer class="bg-primary text-white text-center py-3 mt-auto">
+    <footer class="bg-info text-white text-center py-3 mt-auto">
         <p>&copy; 2025 CodeEvaluator AI. All Rights Reserved.</p>
     </footer>
 
 </body>
 
 </html>
+

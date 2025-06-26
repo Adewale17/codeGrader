@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\CodeSubmission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -25,7 +26,7 @@ class CodeCorrectionController extends Controller
             'messages' => [
                 [
                     'role' => 'user',
-                    'content' => "Fix the following $language code and return only the corrected version:\n\n$code"
+                    'content' => "Fix the following $language code and return only the corrected version: and grade the code base on the \n\n$code the user enter"
                 ]
             ]
         ];
@@ -42,10 +43,22 @@ class CodeCorrectionController extends Controller
 
             $correctedCode = $response->json()['choices'][0]['message']['content'] ?? 'No correction provided';
 
+            $saved = CodeSubmission::create([
+                'language' => $language,
+                'code' => $code,
+                'ai_feedback' => $correctedCode
+            ]);
             return response()->json(['corrected_code' => $correctedCode]);
 
         } catch (\Exception $e) {
             return response()->json(['error' => 'An error occurred while processing your request'], 500);
         }
+        // Optionally, you can save the submission to the database
+
+    }
+    public function history()
+    {
+        $submissions = CodeSubmission::latest()->paginate(4);
+        return view('history', compact('submissions'));
     }
 }

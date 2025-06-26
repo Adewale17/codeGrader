@@ -1,44 +1,40 @@
 @extends('includes.layout')
+
 @section('content')
-    <!-- History Section -->
-    <section class="container py-5">
-        <h2 class="text-center mb-4">Your Code Submission History</h2>
+<section class="container py-2">
+    <h2 class="text-center mb-4">📜 Code Submission History</h2>
+
+    @if($submissions->count())
         <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
+            <table class="table table-striped table-bordered">
+                <thead class="table-info">
                     <tr>
-                        <th>#</th>
-                        <th>Submission Date</th>
-                        <th>Original Code</th>
-                        <th>Grade</th>
-                        <th>Corrected Code</th>
+                        <th>S/N</th>
+                        <th>Language</th>
+                        <th>Code</th>
+                        <th>AI Feedback</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>2025-02-28</td>
-                        <td>
-                            <pre>print("Helo World")</pre>
-                        </td>
-                        <td>B</td>
-                        <td>
-                            <pre>print("Hello World")</pre>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2025-02-27</td>
-                        <td>
-                            <pre>def add(a, b) return a + b</pre>
-                        </td>
-                        <td>C</td>
-                        <td>
-                            <pre>def add(a, b): return a + b</pre>
-                        </td>
-                    </tr>
+                    @foreach($submissions as $submission)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ ucfirst($submission->language) }}</td>
+                            <td><pre class="small text-dark">{{ $submission->code }}</pre></td>
+                            <td><pre class="small text-dark">{{ $submission->ai_feedback }}</pre></td>
+                            <td>{{ $submission->created_at->format('d M Y, h:i A') }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
-    </section>
+
+        <div class="d-flex justify-content-center mt-4">
+    {{ $submissions->links('pagination::bootstrap-5') }}
+</div>
+    @else
+        <div class="alert alert-warning text-center">No code submissions found.</div>
+    @endif
+</section>
 @endsection

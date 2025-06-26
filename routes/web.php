@@ -16,7 +16,7 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::view('/submit-code', 'submit-code')->name('submit-code');
     Route::view('/howitworks', 'howitworks')->name('howitworks');
-    Route::view('/history', view: 'history')->name('history');
+    Route::get('/history', [CodeCorrectionController::class, 'history'])->name('code.history');
 });
 
 // Public Route (Accessible to Everyone)

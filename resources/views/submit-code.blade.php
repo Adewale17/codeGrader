@@ -33,7 +33,7 @@
                                 placeholder="// Write your code here..." required></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-50 mx-auto d-block">
+                        <button type="submit" class="btn btn-info w-25 mx-auto d-block">
                             Submit for Evaluation
                         </button>
                     </form>
@@ -41,7 +41,13 @@
             </div>
         </div>
     </div>
-
+    {{-- spinner --}}
+<div id="loadingSpinner" class="text-center my-4" style="display: none;">
+    <div class="spinner-border text-info" role="status" style="width: 3rem; height: 3rem;">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-2 text-info">Analyzing your code...</p>
+</div>
     <!-- Results Section -->
   <div class="row justify-content-center mt-5" id="results" style="display: none;">
     <div class="col-lg-12">
@@ -77,6 +83,10 @@
     document.getElementById('codeForm').addEventListener('submit', function(event) {
         event.preventDefault();
 
+        // Show spinner
+        document.getElementById('loadingSpinner').style.display = 'block';
+        document.getElementById('results').style.display = 'none';
+
         let formData = {
             language: document.getElementById('languageSelect').value,
             code: document.getElementById('codeInput').value,
@@ -93,26 +103,31 @@
         })
         .then(response => response.json())
         .then(data => {
-            document.getElementById('results').style.display = "block";
+            // Hide spinner
+            document.getElementById('loadingSpinner').style.display = 'none';
 
-            // Handle string or object response
+            // Show results
+            document.getElementById('results').style.display = 'block';
+
             let output = '';
-
             if (typeof data.corrected_code === 'string') {
-                // Remove Markdown-style backticks if present
                 output = data.corrected_code.replace(/```[\s\S]*?\n?/, '').replace(/```$/, '');
             } else {
                 output = JSON.stringify(data, null, 2);
             }
 
-            // Display as plain text with formatting
             document.getElementById('aiResult').innerText = output;
         })
         .catch(error => {
+            // Hide spinner
+            document.getElementById('loadingSpinner').style.display = 'none';
             alert("An error occurred while submitting your code. Please try again.");
             console.error("Error:", error);
         });
     });
 </script>
 
+
 @endsection
+
+

@@ -1,0 +1,47 @@
+
+    .navbar {
+        padding-top: 4rem;
+        padding-bottom: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        height: 90%;
+    }
+
+    .navbar-brand {
+        font-size: 4.75rem;
+        font-weight: bold;
+        color: white !important;
+            margin: 2%;
+
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 1.75rem 1rem;
+        transition: all 0.3s ease;
+        color: white !important;
+
+    }
+    .nav-item{
+        margin: 0 1rem;
+        font-size: larger;
+    }
+
+    .nav-link:hover {
+        color: #00ffcc !important;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+    }
+
+    .dropdown-menu {
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+  .nav-header{
+    background-color: white;
+
+    }
+
+    .dropdown-item:hover {
+        background-color: #00ffcc;
+        color: #000;
+    }

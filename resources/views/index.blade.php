@@ -2,28 +2,28 @@
    @section('content')
        <!-- Features Section -->
        <!-- Hero Section -->
-       <header class="bg-primary text-white text-center py-5">
+       <header class=" text-white text-center py-5">
            <div class="container">
-               <h1>Automated Code Assessment & Quality Analysis</h1>
-               <p class="lead">Submit your code, get graded, and receive AI-powered corrections instantly.</p>
-               <a href="submission.html" class="btn btn-light btn-lg">Try It Now</a>
+               <h1 class="text-secondary">Automated Code Assessment & Quality Analysis</h1>
+               <p class="lead text-primary">Submit your code, get graded, and receive AI-powered corrections instantly.</p>
+               <a href="/submit-code" class="btn btn-light btn-lg">Try It Now</a>
            </div>
        </header>
        <section class="container py-5">
            <h2 class="text-center">Key Features</h2>
-           <div class="row text-center">
-               <div class="col-md-4">
+           <div class="row text-center text-primary">
+               <div class="col-md-6">
                    <h4>✅ Instant Code Grading</h4>
                    <p>Get real-time feedback on your code submissions.</p>
                </div>
-               <div class="col-md-4">
+               <div class="col-md-6">
                    <h4>🤖 AI-Powered Corrections</h4>
                    <p>Automatically fix errors and optimize your code.</p>
                </div>
-               <div class="col-md-4">
+               {{-- <div class="col-md-4">
                    <h4>📊 Performance Tracking</h4>
                    <p>View your past submissions and progress history.</p>
-               </div>
+               </div> --}}
            </div>
        </section>
 

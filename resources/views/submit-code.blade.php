@@ -4,7 +4,7 @@
 <section class="container py-5">
     <div class="text-center mb-4">
         <h2 class="fw-bold">💻 Submit Your Code for AI Assessment</h2>
-        <p class="text-muted">Paste your code and receive instant AI-powered feedback & suggestions.</p>
+        <p class="text-muted">Paste your code and receive instant feedback & suggestions.</p>
     </div>
 
     <div class="row justify-content-center">
@@ -28,10 +28,9 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="codeInput" class="form-label fw-semibold">Enter Your Code:</label>
-                            <textarea class="form-control font-monospace bg-light" id="codeInput" name="code" rows="10"
-                                placeholder="// Write your code here..." required></textarea>
-                        </div>
+      <label for="codeInput" class="form-label fw-semibold">Enter Your Code:</label>
+      <textarea id="codeInput" name="code" placeholder="..................."></textarea>
+    </div>
 
                         <button type="submit" class="btn btn-info w-25 mx-auto d-block">
                             Submit for Evaluation

@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('code_submissions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->after('id');
             $table->string('language');
             $table->longText('code');
             $table->longText('ai_feedback');

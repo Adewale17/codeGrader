@@ -27,7 +27,7 @@
         </div>
 
         <div class="text-center mt-5">
-            <a href="code-submission.html" class="btn btn-primary btn-lg">Submit Your Code</a>
+            <a href="/submit-code" class="btn btn-primary btn-lg">Submit Your Code</a>
         </div>
     </section>
 @endsection

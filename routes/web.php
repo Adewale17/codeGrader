@@ -17,8 +17,8 @@ Route::middleware(['auth'])->group(function () {
     Route::view('/submit-code', 'submit-code')->name('submit-code');
     Route::view('/howitworks', 'howitworks')->name('howitworks');
     Route::get('/history', [CodeCorrectionController::class, 'history'])->name('code.history');
+    Route::delete('history/{id}', [CodeCorrectionController::class, 'delete'])->name('history.destroy');
 });
-
 // Public Route (Accessible to Everyone)
 Route::view('/', 'index')->name('index');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

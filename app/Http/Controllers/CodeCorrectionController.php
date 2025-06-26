@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CodeSubmission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class CodeCorrectionController extends Controller
@@ -26,7 +27,7 @@ class CodeCorrectionController extends Controller
             'messages' => [
                 [
                     'role' => 'user',
-                    'content' => "Fix the following $language code and return only the corrected version: and grade the code base on the \n\n$code the user enter"
+                    'content' => "Fix the following $language code and return just the corrected version: and grade the code base on the \n\n$code the user enter"
                 ]
             ]
         ];
@@ -44,6 +45,8 @@ class CodeCorrectionController extends Controller
             $correctedCode = $response->json()['choices'][0]['message']['content'] ?? 'No correction provided';
 
             $saved = CodeSubmission::create([
+                'user_id' => Auth::id(),
+
                 'language' => $language,
                 'code' => $code,
                 'ai_feedback' => $correctedCode
@@ -60,5 +63,15 @@ class CodeCorrectionController extends Controller
     {
         $submissions = CodeSubmission::latest()->paginate(4);
         return view('history', compact('submissions'));
+    }
+    public function delete($id)
+    {
+        $history = CodeSubmission::findOrFail($id);
+        $history->delete();
+    return redirect()->back()->with('success', 'History deleted successfully.');
+
+
+
+
     }
 }
